@@ -2,23 +2,22 @@ package Model;
 import Model.*;
 import java.util.ArrayList;
 
-public class ModelInterface{
-	public enum Colour { BLACK, YELLOW };
-	TakBoard board;
+public class ModelInterface {
+    public enum Colour {BLACK, YELLOW};
+    TakBoard board;
+    TakPlayer player1, player2;
+    TakPlayer currentPlayer;
 
-	public ModelInterface(int takBoardDimensions){
-		board = new TakBoard(takBoardDimensions);
-	}
+    public ModelInterface(int takBoardDimensions, TakPlayer player1, TakPlayer palyer2) {
+        board = new TakBoard(takBoardDimensions);
+        this.player1 = player1;
+        this.player2 = player2;
+    }
 
+    public void executeMove() throws Errors.InvalidMoveException {
+    }
 
-	public void addPiece(Coordinate input, TakPiece piece) throws Errors.InvalidMoveException{
-		board.get(input).addPiece(piece);
-	}
-
-	public TakStack get(Coordinate input){
-		return board.get(input);
-	}
-	public String toString(){
-		return board.toString();
-	}
+    public String toString() {
+        return board.toString();
+    }
 }
