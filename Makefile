@@ -14,7 +14,9 @@ CLASSES = Main.java \
 	Model/TakBoard.java \
 	Model/TakPiece.java \
 	Model/TakPlayer.java \
-	Model/TakStack.java
+	Model/TakStack.java \
+	Model/MovePlace.java \
+	Model/MoveCover.java \
 
 default: classes
 

@@ -15,6 +15,10 @@ public class TakStack {
         return stack.get(0);
     }
 
+    public ModelInterface.Colour topColour() {
+        return stack.get(0).getColour();
+    }
+
     public TakPiece.PieceType topType() {
         return top().getType();
     }
@@ -34,26 +38,26 @@ public class TakStack {
             throw new Errors.InvalidMoveException("cannot place piece at coordiante " + coordinate.toString() + ", piece already exists there");
     }
 
-    public void cover(TakStack stackToBeCovered) throws Errors.InvalidMoveException {
-        if ( stackToBeCovered.size() == 0 )
-            validCover(stackToBeCovered);
-        switch ( stackToBeCovered.topType()) {
+    public void getCoveredBy(TakStack coveringStack) throws Errors.InvalidMoveException {
+        if ( size() == 0 )
+            validCover(coveringStack);
+        switch ( topType()) {
             case CAP:
                 throw new Errors.InvalidMoveException("cannot move move stack onto cap piece");
             case WALL:
-                if ( topType() != TakPiece.PieceType.CAP )
+                if ( coveringStack.topType() != TakPiece.PieceType.CAP )
                     throw new Errors.InvalidMoveException("cannot move move stack onto cap piece");
             case FLAT:
-                validCover(stackToBeCovered);
+                validCover(coveringStack);
                 break;
             default:
                 throw new Errors.InvalidMoveException("invalid piece type; something went wrong");
         }
     }
 
-    private void validCover(TakStack stackToBeCovered) {
-        stackToBeCovered.stack.addAll(0, stack);
-        clearStack();
+    private void validCover(TakStack coveringStack) {
+        stack.addAll(0, coveringStack.stack);
+        coveringStack.clearStack();
     }
 
     private List<TakPiece> getStack() {

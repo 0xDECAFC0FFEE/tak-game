@@ -11,4 +11,8 @@ public class Coordinate {
     public String toString() {
         return "(" + x + ", " + y + ")";
     }
+
+    public boolean isAdjacent(Coordinate otherCoordinate) {
+        return Math.abs((otherCoordinate.x - x) + (otherCoordinate.y - y)) == 1;
+    }
 }

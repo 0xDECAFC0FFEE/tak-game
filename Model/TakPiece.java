@@ -20,23 +20,23 @@ public class TakPiece {
     }
 
     public String toString() {
-        String output = "(";
+        String output = "";
 
         switch ( colour ) {
-            case BLACK: output += "B";
+            case BLACK: output += "\033[1;34m";
                 break;
-            case YELLOW: output += "Y";
+            case YELLOW: output += "\033[1;33m";
                 break;
-            default: output += "UNKNOWN COLOUR";
+            default: output += "UNKNOWN COLOUR ";
         }
         switch ( type ) {
-            case CAP: output += "C)";
+            case CAP: output += "C\033[0m";
                 break;
-            case WALL: output += "W)";
+            case WALL: output += "W\033[0m";
                 break;
-            case FLAT: output += "F)";
+            case FLAT: output += "F\033[0m";
                 break;
-            default: output += "UNKNOWN PIECE TYPE)";
+            default: output += "UNKNOWN PIECE TYPE";
         }
         return output;
     }
